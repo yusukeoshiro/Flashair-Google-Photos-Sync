@@ -1,6 +1,4 @@
-FROM node:8-alpine
-
-FROM node:8-alpine
+FROM node:10-alpine
 
 COPY package.json package-lock.json ./
 RUN npm install
