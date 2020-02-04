@@ -48,5 +48,5 @@ After creating `env.json` and `token.json`, build the container image with `dock
 TAG="asia.gcr.io/$(gcloud config get-value project)/webdav-sync-for-sd-card"
 echo $TAG
 docker build . -t $TAG
-docker push asia.gcr.io/metroly-smart-lock-dev/webdav-sync-for-sd-card
+docker push $TAG
 ```
