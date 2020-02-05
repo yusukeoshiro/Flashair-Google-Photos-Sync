@@ -22,15 +22,19 @@ module.exports = class GooglePhotos {
         throw new Error('REFRESH_TOKEN_ERROR');
       });
       console.log('...done');
+      this.oauth2Client.credentials = cred.credentials;
       return cred.credentials.access_token;
     } else {
       console.log('previous access token is still fresh');
-      return this.oauth2Client.accessToken;
+      return this.oauth2Client.credentials.access_token;
     }
   }
 
   async getClient () {
     if (this.client === undefined) {
+      this.client = new Photos(await this.accessToken());
+    }
+    if (this.oauth2Client.isTokenExpiring()) {
       this.client = new Photos(await this.accessToken());
     }
     return this.client;
